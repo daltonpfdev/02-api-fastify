@@ -1,8 +1,14 @@
 // Importando o arquivo .env
-import 'dotenv/config'
+import { config } from 'dotenv'
 
 // Importando a biblioteca do Zod
 import { z } from 'zod'
+
+if (process.env.NODE_ENV === 'test') {
+  config({ path: '.env.test' })
+} else {
+  config()
+}
 
 // Variáveis de Ambiente para ser verificadas com seus devidos tipos
 const envSchema = z.object({
